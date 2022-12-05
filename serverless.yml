@@ -1,0 +1,47 @@
+service: lambda-benchmarks
+frameworkVersion: "3"
+
+package:
+  patterns:
+    - "!quarkus/**"
+    - "!java/**"
+    - "!groovy/**"
+
+provider:
+  name: aws
+  region: eu-central-1
+  ecr:
+    images:
+      golang:
+        file: ./docker/Dockerfile
+        path: .
+  logRetentionInDays: 1
+  timeout: 5
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+      Resource:
+        - !GetAtt TicketTable.Arn
+
+plugins:
+  - ./php/vendor/bref/bref
+
+functions:
+  - ${file(./groovy/_config.yml)}
+  - ${file(./java/_config.yml)}
+  - ${file(./quarkus/_config.yml)}
+  - ${file(./typescript/_config.yml)}
+  - ${file(./golang/_config.yml)}
+  - ${file(./docker/_config.yml)}
+  - ${file(./php/_config.yml)}
+
+resources:
+  - ${file(./infrastructure/queues.yml)}
+  - ${file(./infrastructure/queuepolicy.yml)}
+  - ${file(./infrastructure/database.yml)}
+  - ${file(./infrastructure/topics.yml)}
+  - ${file(./infrastructure/powertuning.yml)}

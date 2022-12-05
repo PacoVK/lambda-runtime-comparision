@@ -1,0 +1,21 @@
+Resources:
+  SqsPolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      Queues:
+        - !Ref GroovyQueue
+        - !Ref JavaQueue
+        - !Ref QuarkusQueue
+        - !Ref PhpQueue
+        - !Ref TypescriptQueue
+        - !Ref GolangQueue
+        - !Ref GolangDockerQueue
+      PolicyDocument:
+        Statement:
+          - Action:
+              - "SQS:SendMessage"
+            Effect: "Allow"
+            Resource: "*"
+            Principal:
+              Service:
+                - "sns.amazonaws.com"

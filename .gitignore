@@ -1,0 +1,21 @@
+# General
+*/.idea
+.idea
+.serverless
+node_modules
+
+# Java
+*/.gradle
+java/build/*
+groovy/build/*
+quarkus/build/*
+
+# Php
+php/vendor
+
+# Golang
+golang/main
+
+# Typescript
+typescript/node_modules
+typescript/dist

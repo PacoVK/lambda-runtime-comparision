@@ -1,0 +1,14 @@
+php:
+  runtime: provided.al2
+  handler: php/index.php
+  package:
+    patterns:
+      - "!tests/**"
+  environment:
+    BREF_AUTOLOAD_PATH: ./php/vendor/autoload.php
+  layers:
+    - ${bref:layer.php-81}
+  events:
+    - sqs:
+        arn: !GetAtt PhpQueue.Arn
+        batchSize: 1

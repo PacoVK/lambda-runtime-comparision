@@ -1,0 +1,12 @@
+quarkus:
+  runtime: provided.al2
+  handler: not.used.in.provided.runtime
+  architecture: arm64
+  package:
+    artifact: quarkus/build/function.zip
+  environment:
+    DISABLE_SIGNAL_HANDLERS: true
+  events:
+    - sqs:
+        arn: !GetAtt QuarkusQueue.Arn
+        batchSize: 1

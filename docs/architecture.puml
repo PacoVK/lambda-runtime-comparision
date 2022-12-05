@@ -1,0 +1,32 @@
+@startuml Technical view
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v14.0/dist
+
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/AWSSimplified.puml
+
+!include AWSPuml/ApplicationIntegration/SimpleNotificationService.puml
+!include AWSPuml/Compute/Lambda.puml
+!include AWSPuml/Database/DynamoDB.puml
+!include AWSPuml/ApplicationIntegration/SimpleQueueServiceQueue.puml
+
+left to right direction
+
+Lambda(lambda, "Lambda", "")
+DynamoDB(db, "Persistence", "")
+SimpleNotificationService(topic, "Notification topic", "")
+SimpleQueueServiceQueue(sqs, "Buffer queue", "")
+
+topic --> sqs: fan out message
+sqs --> lambda: invoke
+lambda --> db: persist message payload
+
+legend left
+    |Icon| AWS service name |
+    |<img:https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/main/dist/ApplicationIntegration/SimpleQueueServiceQueue.png>| SQS|
+    |<img:https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/main/dist/ApplicationIntegration/SimpleNotificationService.png>| SNS|
+    |<img:https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/main/dist/Compute/Lambda.png>| Lambda|
+    |<img:https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/main/dist/Database/DynamoDB.png>| DynamoDB|
+endlegend
+
+@enduml

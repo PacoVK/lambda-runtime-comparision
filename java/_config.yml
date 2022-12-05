@@ -1,0 +1,9 @@
+java:
+  runtime: java11
+  package:
+    artifact: java/build/distributions/java.zip
+  handler: dev.euhus.lambda.Handler
+  events:
+    - sqs:
+        arn: !GetAtt JavaQueue.Arn
+        batchSize: 1

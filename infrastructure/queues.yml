@@ -1,0 +1,78 @@
+Resources:
+  GroovyQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: GroovyQueue
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt GroovyDeadletterQueue.Arn
+        maxReceiveCount: 1
+  GroovyDeadletterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: GroovyDeadletterQueue
+  JavaQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: JavaQueue
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt JavaDeadletterQueue.Arn
+        maxReceiveCount: 1
+  JavaDeadletterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: JavaDeadletterQueue
+  QuarkusQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: QuarkusQueue
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt QuarkusDeadletterQueue.Arn
+        maxReceiveCount: 1
+  QuarkusDeadletterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: QuarkusDeadletterQueue
+  TypescriptQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: TypescriptQueue
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt TypescriptDeadletterQueue.Arn
+        maxReceiveCount: 1
+  TypescriptDeadletterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: TypescriptDeadletterQueue
+  PhpQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: PhpQueue
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt PhpDeadletterQueue.Arn
+        maxReceiveCount: 1
+  PhpDeadletterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: PhpDeadletterQueue
+  GolangQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: GolangQueue
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt GolangDeadletterQueue.Arn
+        maxReceiveCount: 1
+  GolangDeadletterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: GolangDeadletterQueue
+  GolangDockerQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: GolangDockerQueue
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt GolangDockerDeadletterQueue.Arn
+        maxReceiveCount: 1
+  GolangDockerDeadletterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: GolangDockerDeadletterQueue

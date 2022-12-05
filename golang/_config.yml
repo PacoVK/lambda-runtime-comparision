@@ -1,0 +1,7 @@
+golang:
+  runtime: go1.x
+  handler: golang/main
+  events:
+    - sqs:
+        arn: !GetAtt GolangQueue.Arn
+        batchSize: 1

@@ -1,0 +1,9 @@
+groovy:
+  runtime: java11
+  package:
+    artifact: ${file(groovy/build/build.json):distribution}
+  handler: dev.euhus.lambda.Handler
+  events:
+    - sqs:
+        arn: !GetAtt GroovyQueue.Arn
+        batchSize: 1

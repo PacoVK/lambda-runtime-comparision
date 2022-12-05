@@ -1,0 +1,6 @@
+golang-docker:
+  image: golang
+  events:
+    - sqs:
+        arn: !GetAtt GolangQueue.Arn
+        batchSize: 1

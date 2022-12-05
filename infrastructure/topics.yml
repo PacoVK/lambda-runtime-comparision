@@ -1,0 +1,55 @@
+Resources:
+  SnsTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: Lambda benchmark
+      TopicName: LambdaBenchmark
+  GroovySnsSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: sqs
+      Endpoint: !GetAtt GroovyQueue.Arn
+      TopicArn: !Ref SnsTopic
+      RawMessageDelivery: true
+  QuarkusSnsSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: sqs
+      Endpoint: !GetAtt QuarkusQueue.Arn
+      TopicArn: !Ref SnsTopic
+      RawMessageDelivery: true
+  JavaSnsSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: sqs
+      Endpoint: !GetAtt JavaQueue.Arn
+      TopicArn: !Ref SnsTopic
+      RawMessageDelivery: true
+  TypescriptSnsSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: sqs
+      Endpoint: !GetAtt TypescriptQueue.Arn
+      TopicArn: !Ref SnsTopic
+      RawMessageDelivery: true
+  PhpSnsSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: sqs
+      Endpoint: !GetAtt PhpQueue.Arn
+      TopicArn: !Ref SnsTopic
+      RawMessageDelivery: true
+  GolangSnsSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: sqs
+      Endpoint: !GetAtt GolangQueue.Arn
+      TopicArn: !Ref SnsTopic
+      RawMessageDelivery: true
+  GolangDockerSnsSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: sqs
+      Endpoint: !GetAtt GolangDockerQueue.Arn
+      TopicArn: !Ref SnsTopic
+      RawMessageDelivery: true

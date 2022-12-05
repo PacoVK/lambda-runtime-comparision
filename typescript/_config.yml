@@ -1,0 +1,9 @@
+typescript:
+  runtime: nodejs18.x
+  handler: typescript/dist/handler.handler
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+  events:
+    - sqs:
+        arn: !GetAtt TypescriptQueue.Arn
+        batchSize: 1

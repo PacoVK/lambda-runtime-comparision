@@ -1,0 +1,22 @@
+{
+  "name": "lambda-benchmark",
+  "version": "1.0.0",
+  "description": "Serverless Lambda Benchmark",
+  "scripts": {
+    "deploy": "sls deploy",
+    "destroy": "sls remove",
+    "package": "sls package",
+    "benchmark": "node ./test/invokeStepfunction.js",
+    "build": "./build.sh"
+  },
+  "author": "pascal.euhus@gmx.de",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless": "^3.25.1"
+  },
+  "dependencies": {
+    "@aws-sdk/client-lambda": "^3.223.0",
+    "@aws-sdk/client-sfn": "^3.218.0",
+    "prettier": "^2.8.0"
+  }
+}
